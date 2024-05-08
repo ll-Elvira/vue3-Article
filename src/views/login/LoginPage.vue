@@ -97,9 +97,9 @@ watch(isRegister, () => {
   <!-- //row表示一行 ,一行分成24份
   //col表示列 -->
   <el-row class="login-page">
-    <el-col :span="12" class="bg"></el-col>
     <!-- //span表示份数   :offset="3"左侧margin为3份 -->
-    <el-col :span="6" :offset="3" class="form">
+    <el-col :span="4" :offset="10" class="form">
+      <div class="transparent"></div>
       <el-form
         :model="formModel"
         :rules="rules"
@@ -109,7 +109,7 @@ watch(isRegister, () => {
         v-if="isRegister"
       >
         <el-form-item>
-          <h1>注册</h1>
+          <h1 class="login">注册</h1>
         </el-form-item>
         <el-form-item prop="username">
           <el-input
@@ -145,7 +145,12 @@ watch(isRegister, () => {
           </el-button>
         </el-form-item>
         <el-form-item class="flex">
-          <el-link type="info" :underline="false" @click="isRegister = false">
+          <el-link
+            class="textColor"
+            type="info"
+            :underline="false"
+            @click="isRegister = false"
+          >
             ← 登录
           </el-link>
         </el-form-item>
@@ -159,7 +164,7 @@ watch(isRegister, () => {
         v-else
       >
         <el-form-item>
-          <h1>登录</h1>
+          <h1 class="login">登录</h1>
         </el-form-item>
         <el-form-item prop="username">
           <el-input
@@ -193,7 +198,12 @@ watch(isRegister, () => {
           >
         </el-form-item>
         <el-form-item class="flex">
-          <el-link type="info" :underline="false" @click="isRegister = true">
+          <el-link
+            class="textColor"
+            type="info"
+            :underline="false"
+            @click="isRegister = true"
+          >
             注册 →
           </el-link>
         </el-form-item>
@@ -206,11 +216,22 @@ watch(isRegister, () => {
 .login-page {
   height: 100vh;
   background-color: #fff;
-  .bg {
-    background:
-      url('@/assets/logo2.png') no-repeat 60% center / 240px auto,
-      url('@/assets/login_bg.jpg') no-repeat center / cover;
-    border-radius: 0 20px 20px 0;
+  background: url('@/assets/book.jpg') no-repeat center / cover;
+  // .bg {
+  //   background:
+  //   // url('@/assets/logo2.png') no-repeat 60% center / 240px auto,
+  //     url('@/assets/鲸鱼插画2.jpg') no-repeat center / cover;
+  //   //border-radius: 0 20px 20px 0;
+  // }
+  .transparent {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 30%; /* 根据需要调整宽度 */
+    height: 60%; /* 根据需要调整高度 */
+    background-color: rgba(228, 236, 237, 0.65);
+    border-radius: 20px;
   }
   .form {
     display: flex;
@@ -222,11 +243,19 @@ watch(isRegister, () => {
     }
     .button {
       width: 100%;
+      background-color: #67642c;
+      border-color: #67642c;
     }
     .flex {
       width: 100%;
       display: flex;
       justify-content: space-between;
+    }
+    .login {
+      margin: 0 auto;
+    }
+    .textColor {
+      color: #545452;
     }
   }
 }

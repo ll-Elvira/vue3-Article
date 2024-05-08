@@ -43,10 +43,10 @@ const handleCommand = (key) => {
     <el-aside width="200px">
       <div class="el-aside__logo"></div>
       <el-menu
-        active-text-color="#ffd04b"
-        background-color="#232323"
+        class="menu"
+        active-text-color="#6F4B15"
         :default-active="$route.path"
-        text-color="#fff"
+        text-color="#6F4B15"
         router
       >
         <el-menu-item index="/article/channel">
@@ -63,15 +63,15 @@ const handleCommand = (key) => {
             <el-icon><UserFilled /></el-icon>
             <span>个人中心</span>
           </template>
-          <el-menu-item index="/user/profile">
+          <el-menu-item class="menu1" index="/user/profile">
             <el-icon><User /></el-icon>
             <span>基本资料</span>
           </el-menu-item>
-          <el-menu-item index="/user/avatar">
+          <el-menu-item class="menu1" index="/user/avatar">
             <el-icon><Crop /></el-icon>
             <span>更换头像</span>
           </el-menu-item>
-          <el-menu-item index="/user/password">
+          <el-menu-item class="menu1" index="/user/password">
             <el-icon><EditPen /></el-icon>
             <span>重置密码</span>
           </el-menu-item>
@@ -79,7 +79,7 @@ const handleCommand = (key) => {
       </el-menu>
     </el-aside>
     <el-container>
-      <el-header>
+      <el-header class="header">
         <div>
           当前用户：<strong>{{
             userStore.user.nickname || userStore.user.username
@@ -123,7 +123,9 @@ const handleCommand = (key) => {
 .layout-container {
   height: 100vh;
   .el-aside {
-    background-color: #232323;
+    background-image: url('@/assets/book.jpg');
+    background-size: cover; /* 适应背景框 */
+    background-position: 60% 50%;
     &__logo {
       height: 120px;
       background: url('@/assets/logo.png') no-repeat center / 120px auto;
@@ -131,9 +133,17 @@ const handleCommand = (key) => {
     .el-menu {
       border-right: none;
     }
+    .menu {
+      background-color: rgba(153, 153, 98, 0.3) !important;
+    }
+    .menu1 {
+      background-color: rgba(170, 153, 74, 0.7) !important;
+    }
   }
+
   .el-header {
-    background-color: #fff;
+    background-color: #f5e9ab;
+    // background: url('@/assets/logo.png');
     display: flex;
     align-items: center;
     justify-content: space-between;
