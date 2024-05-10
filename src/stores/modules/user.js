@@ -15,7 +15,7 @@ export const useUserStore = defineStore(
     const user = ref()
     //从后台拿到user信息
     const getUser = async () => {
-      console.log('开始获取信息')
+      console.log('仓库开始获取用户信息')
       const res = await userGetInfoService()
       user.value = res.data.data
       console.log('基本信息', user.value)

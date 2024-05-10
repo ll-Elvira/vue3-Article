@@ -3,6 +3,7 @@ import { ref } from 'vue'
 import { Plus, Upload } from '@element-plus/icons-vue'
 import { useUserStore } from '@/stores'
 import { userUploadAvatarService } from '@/api/user'
+import { useThrottleFn } from '@vueuse/core'
 
 const userStore = useUserStore()
 const uploadRef = ref()
@@ -16,11 +17,12 @@ const onUploadFile = (file) => {
   }
 }
 //文件上传
-const onUpdateAvatar = async () => {
+const ThonUpdateAvatar = useThrottleFn(async () => {
+  console.log('开始上传图片1')
   await userUploadAvatarService(imgUrl.value)
   await userStore.getUser()
   ElMessage({ type: 'success', message: '更换头像成功' })
-}
+}, 300)
 </script>
 
 <template>
@@ -47,7 +49,7 @@ const onUpdateAvatar = async () => {
           选择图片
         </el-button>
         <el-button
-          @click="onUpdateAvatar"
+          @click="ThonUpdateAvatar"
           type="success"
           :icon="Upload"
           size="large"

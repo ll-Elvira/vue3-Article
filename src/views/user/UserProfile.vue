@@ -2,6 +2,8 @@
 import { useUserStore } from '@/stores'
 import { ref } from 'vue'
 import { userUpdateInfoService } from '@/api/user'
+import { useThrottleFn } from '@vueuse/core'
+// import useThrottleFn from '@/utils/throttle';
 const {
   user: { username, nickname, email, id }
 } = useUserStore()
@@ -22,16 +24,19 @@ const rules = {
     { type: 'email', message: '邮箱格式不正确', trigger: 'blur' }
   ]
 }
-//页面校验，，提交修改
+
 const formRef = ref()
-const onSubmit = async () => {
+const ThSubmit = useThrottleFn(async () => {
+  console.log('信息表单检测')
   const valid = await formRef.value.validate()
+  console.log('验证结束')
   if (valid) {
+    console.log('开始提交修改')
     await userUpdateInfoService(userInfo.value)
     await userStore.getUser()
     ElMessage.success('修改成功')
   }
-}
+}, 400)
 </script>
 
 <template>
@@ -55,7 +60,7 @@ const onSubmit = async () => {
             <el-input v-model="userInfo.email"></el-input>
           </el-form-item>
           <el-form-item>
-            <el-button type="primary" @click="onSubmit">提交修改</el-button>
+            <el-button type="primary" @click="ThSubmit">提交修改</el-button>
           </el-form-item>
         </el-form>
       </el-col>
