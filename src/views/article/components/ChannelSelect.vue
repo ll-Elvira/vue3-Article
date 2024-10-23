@@ -15,10 +15,10 @@ const emit = defineEmits(['update:modelValue'])
 defineProps({
   modelValue: {
     type: [Number, String]
-  },
-  width: {
-    type: String
   }
+  // width: {
+  //   type: String
+  // }
 })
 </script>
 
@@ -33,7 +33,7 @@ defineProps({
     :modelValue="modelValue"
     @update:modelValue="emit('update:modelValue', $event)"
     placeholder="请选择"
-    :style="{ width }"
+    :style="{ width: '100px' }"
   >
     <el-option
       v-for="channel in channelList"

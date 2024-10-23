@@ -51,6 +51,7 @@ const open = async (row) => {
       formModel.value = { ...defaultForm } //基于默认数据重置
       imgUrl.value = ''
       editorRef.value.setHTML('')
+      console.log('sss')
     })
   }
 }

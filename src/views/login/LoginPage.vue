@@ -5,6 +5,20 @@ import { User, Lock } from '@element-plus/icons-vue'
 import { ref, watch } from 'vue'
 import { useUserStore } from '@/stores/index'
 import router from '@/router'
+import { source } from '@/utils/request'
+
+// const c = () => {
+//   if (source1) {
+//     source1.cancel('已撤回')
+//     console.log('取消了')
+//   }
+//   //console.log('取消了')
+// }
+const cancelRequest = () => {
+  console.log('触发取消请求')
+  source.cancel('撤回请求')
+}
+
 const isRegister = ref(false)
 
 //注册提交的数据对象
@@ -60,20 +74,22 @@ const register = async () => {
 }
 // 登录
 const userStore = useUserStore()
+
+//账号密码lu1111  111111
 const login = async () => {
   await form.value.validate()
   try {
     const res = await userLoginService(formModel.value)
     userStore.setToken(res.data.token)
-    console.log('开始登陆', res)
+    //console.log('开始登陆', res)
     ElMessage.success('登录成功')
     router.push('/')
     return
   } catch (error) {
-    // 错误处理逻辑
+    // 错误处理逻辑s
     // alert(error.message)
     console.log(error)
-    ElMessage.error(error.message)
+    //ElMessage.error(error.message)
   }
 }
 
@@ -210,6 +226,7 @@ watch(isRegister, () => {
       </el-form>
     </el-col>
   </el-row>
+  <button @click="cancelRequest">撤回1111111111</button>
 </template>
 
 <style lang="scss" scoped>
@@ -229,11 +246,14 @@ watch(isRegister, () => {
     left: 50%;
     transform: translate(-50%, -50%);
     width: 30%; /* 根据需要调整宽度 */
+    min-width: 400px;
+    min-height: 400px;
     height: 60%; /* 根据需要调整高度 */
     background-color: rgba(228, 236, 237, 0.65);
     border-radius: 20px;
   }
   .form {
+    //min-width: 200px;
     display: flex;
     flex-direction: column;
     justify-content: center;

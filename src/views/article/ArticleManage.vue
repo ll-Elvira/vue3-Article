@@ -1,5 +1,5 @@
 <script setup>
-import { provide, ref } from 'vue'
+import { provide, ref, watch } from 'vue'
 import pageContainer from '@/components/pageContainer.vue'
 import { Delete, Edit } from '@element-plus/icons-vue'
 import ChannelSelect from './components/ChannelSelect.vue'
@@ -81,6 +81,12 @@ const onSuccess = (type) => {
   }
   getArticleList()
 }
+watch(
+  () => params.value.cate_id,
+  (newValue, oldValue) => {
+    console.log('Cate_id is about to change from', oldValue, 'to', newValue)
+  }
+)
 </script>
 <template>
   <pageContainer>
