@@ -114,7 +114,8 @@ watch(isRegister, () => {
   //col表示列 -->
   <el-row class="login-page">
     <!-- //span表示份数   :offset="3"左侧margin为3份 -->
-    <el-col :span="4" :offset="10" class="form">
+    <el-col :span="10"></el-col>
+    <el-col :span="4" class="form">
       <div class="transparent"></div>
       <el-form
         :model="formModel"
@@ -123,6 +124,7 @@ watch(isRegister, () => {
         size="large"
         autocomplete="off"
         v-if="isRegister"
+        class="f"
       >
         <el-form-item>
           <h1 class="login">注册</h1>
@@ -172,6 +174,7 @@ watch(isRegister, () => {
         </el-form-item>
       </el-form>
       <el-form
+        class="f"
         :model="formModel"
         :rules="rules"
         ref="form"
@@ -225,8 +228,8 @@ watch(isRegister, () => {
         </el-form-item>
       </el-form>
     </el-col>
+    <el-col :span="10"></el-col>
   </el-row>
-  <button @click="cancelRequest">撤回1111111111</button>
 </template>
 
 <style lang="scss" scoped>
@@ -248,9 +251,13 @@ watch(isRegister, () => {
     width: 30%; /* 根据需要调整宽度 */
     min-width: 400px;
     min-height: 400px;
+
     height: 60%; /* 根据需要调整高度 */
     background-color: rgba(228, 236, 237, 0.65);
     border-radius: 20px;
+    @media screen and (max-width: 500px) {
+      min-width: 300px;
+    }
   }
   .form {
     //min-width: 200px;
@@ -258,6 +265,15 @@ watch(isRegister, () => {
     flex-direction: column;
     justify-content: center;
     user-select: none;
+    .f {
+      @media screen and (max-width: 500px) {
+        position: relative;
+        left: -100%;
+        // // top: 20%;
+
+        min-width: 300%;
+      }
+    }
     .title {
       margin: 0 auto;
     }

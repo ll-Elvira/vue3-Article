@@ -14,6 +14,25 @@ import { useUserStore } from '@/stores'
 import { onMounted } from 'vue'
 import router from '@/router'
 
+const throttle = (fn, delay) => {
+  let timeOut = null
+  console.log('1111', timeOut)
+  return () => {
+    if (!timeOut) {
+      timeOut = setTimeout(() => {
+        fn()
+        timeOut = null
+      }, delay)
+    }
+  }
+}
+const handleClik = () => {
+  console.log('防抖')
+}
+
+const throttledClick = throttle(handleClik, 1000)
+window.addEventListener('click', throttledClick)
+
 console.log('进入架子')
 const userStore = useUserStore()
 onMounted(() => {
