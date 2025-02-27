@@ -114,7 +114,7 @@ const onSuccess = () => {
         <el-table
           ref="tableRef"
           v-loading="loading"
-          :data="nowItems"
+          :data="allItems"
           style="width: 100%"
           :row-style="{ height: '50px' }"
         >
