@@ -37,6 +37,20 @@ const open = async (row) => {
 //表单校验
 const formRef = ref()
 const emit = defineEmits(['success'])
+//let s = 101
+// const a = () => {
+//   let n = setInterval(async () => {
+//     s = s + 1
+//     if (s == 200) {
+//       clearInterval(n)
+//     }
+//     let b = s.toString()
+//     await artAddChannelService({
+//       cate_name: b,
+//       cate_alias: b
+//     })
+//   }, 1000)
+// }
 const onSubmit = async () => {
   await formRef.value.validate()
   if (formModel.value.id) await artEditChannelService(formModel.value)
@@ -71,6 +85,7 @@ defineExpose({
     >
       <el-form-item label="分类名称" prop="cate_name">
         <el-input
+          id="cate_name"
           v-model="formModel.cate_name"
           minlength="1"
           maxlength="10"
@@ -79,6 +94,7 @@ defineExpose({
       </el-form-item>
       <el-form-item label="分类别名" prop="cate_alias">
         <el-input
+          id="cate_alias"
           v-model="formModel.cate_alias"
           minlength="1"
           maxlength="15"
@@ -89,7 +105,7 @@ defineExpose({
     <template #footer>
       <span class="dialog-footer">
         <el-button @click="dialogVisible = false">取消</el-button>
-        <el-button type="primary" @click="onSubmit"> 确认 </el-button>
+        <el-button id="primary" @click="onSubmit"> 确认 </el-button>
       </span>
     </template>
   </el-dialog>

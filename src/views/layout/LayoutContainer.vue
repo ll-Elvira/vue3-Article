@@ -11,9 +11,9 @@ import {
 } from '@element-plus/icons-vue'
 import avatar from '@/assets/default.png'
 import { useUserStore } from '@/stores'
-import { onMounted } from 'vue'
+import { onBeforeMount } from 'vue'
 import router from '@/router'
-
+const userStore = useUserStore()
 const throttle = (fn, delay) => {
   let timeOut = null
   console.log('1111', timeOut)
@@ -34,10 +34,11 @@ const throttledClick = throttle(handleClik, 1000)
 window.addEventListener('click', throttledClick)
 
 console.log('进入架子')
-const userStore = useUserStore()
-onMounted(() => {
+
+onBeforeMount(() => {
+  console.log('即将获取用户信息')
   userStore.getUser()
-  console.log('昵称', userStore.user.nickname)
+  //console.log('昵称', userStore?.user?.nickname)
 })
 
 const handleCommand = (key) => {
@@ -139,6 +140,8 @@ const handleCommand = (key) => {
 </template>
 
 <style lang="scss" scoped>
+.el-main {
+}
 .layout-container {
   height: 100vh;
   .el-aside {

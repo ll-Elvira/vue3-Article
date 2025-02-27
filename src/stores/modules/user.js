@@ -24,7 +24,9 @@ export const useUserStore = defineStore(
     const setUser = (obj) => {
       user.value = obj
     }
+    const isGetData = ref(false)
     return {
+      isGetData,
       user,
       token,
       setToken,
